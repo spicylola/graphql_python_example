@@ -1,0 +1,11 @@
+Faker
+flask
+Flask-Migrate
+flask-graphql
+flask-sqlalchemy
+flask-cors
+graphene
+graphene-sqlalchemy
+graphene-sqlalchemy-filter
+sqlalchemy
+psycopg2

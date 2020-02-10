@@ -1,0 +1,11 @@
+version: "3"
+services:
+  db:
+    image: "postgres"
+    container_name: "gql_example"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=gql_example
+      - POSTGRES_USER=spicylola
+      - POSTGRES_PASSWORD=ohsospicy
