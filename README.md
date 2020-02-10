@@ -45,6 +45,7 @@ and run some queries!
 
 Example Queries:
 Example 1: Get Event by Id 11
+```bash
 {
   events(where:{id:11})
   {
@@ -58,8 +59,10 @@ Example 1: Get Event by Id 11
     }
   }
 }
+```
 
 Example 2: Get User with a Name like Joe and ID greater than 4:
+```bash
 {
   users(where:{idGt:4, nameLike:"%Joe%"})
   {
@@ -93,9 +96,11 @@ Example 2: Get User with a Name like Joe and ID greater than 4:
     }
   }
 }
+```
 
 Mutation: 
 Create Example:
+```bash
 mutation{
   createEvent(createdBy:3, description:"ahh", name:"wee")
   {
@@ -109,8 +114,10 @@ mutation{
     }
   }
 }
+```
 
 Update Example:
+```bash
 mutation{
   updateUser(email:"dshonaike41@gmail.com", name:"ahh", roleIds:[5,4,6], id:103 )
   {
@@ -131,15 +138,16 @@ mutation{
     }
   }
 }
+```
 
 Delete Example:
-
+```bash
 mutation{
   deleteUser(id:103)
   {
     userId
   }
 }
-
+```
 
 
