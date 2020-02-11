@@ -1,1 +1,1 @@
-web: flask db upgrade; flask translate compile; gunicorn graphql_python_example:app
+web: flask db upgrade; gunicorn graphql_python_example:app
