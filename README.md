@@ -132,6 +132,10 @@ First you'll need to get the source of the project. Do this by cloning the repos
 # Get the example project code
 git clone https://github.com/spicylola/graphql_python_example.git
 cd graphql_python_example.git
+pip install virtualenv
+pip install --upgrade pip
+alias python=/usr/local/bin/python3
+python3 -m pip install --upgrade --force pip
 ```
 
 ```bash
@@ -144,6 +148,7 @@ Now we can install our dependencies:
 
 ```bash
 pip install -r requirements.txt
+pip3 install graphene-sqlalchemy-filter
 ```
 Make sure Docker is running.
 
