@@ -123,7 +123,9 @@ Make Sure to Download a version of Python 3.4 or greater to already have Pip ins
 
 **Docker:** https://docs.docker.com/install/#server
 
-**Docker-Compose:** https://docs.docker.com/compose/
+**Docker-Compose:** https://docs.docker.com/compose/install/
+
+**git:** https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
 First you'll need to get the source of the project. Do this by cloning the repository:
 ```bash
