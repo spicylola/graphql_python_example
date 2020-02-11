@@ -4,6 +4,7 @@ Flask-Migrate
 flask-graphql
 flask-sqlalchemy
 flask-cors
+gunicorn
 graphene
 graphene-sqlalchemy
 graphene-sqlalchemy-filter
