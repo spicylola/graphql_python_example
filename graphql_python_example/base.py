@@ -8,7 +8,7 @@ from graphql_python_example.models import User as UserModel
 from graphql_python_example.models import Event as EventModel
 from graphql_python_example.models import Role as RoleModel
 
-from graphql_python_example.app_settings import db
+from graphql_python_example.app import db
 from sqlalchemy.sql import functions as func
 
 
