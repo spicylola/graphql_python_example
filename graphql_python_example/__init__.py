@@ -1,5 +1,5 @@
 from graphql_python_example.config import LocalConfig
-from graphql_python_example.appimport create_app
+from graphql_python_example.app import create_app
 
 app = create_app()
 
