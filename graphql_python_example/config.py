@@ -10,7 +10,7 @@ class Config:
     DB_PASS = os.getenv('DB_PASS', 'ohsospicy')
     DB_DATABASE = os.getenv('DB_DATABASE', 'gql_example')
 
-    SQLALCHEMY_DATABASE_URI = f'postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_DATABASE}?'
+    SQLALCHEMY_DATABASE_URI = os.getenv('SQL_URI', f'postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_DATABASE}?')
 
 
 class LocalConfig(Config):
