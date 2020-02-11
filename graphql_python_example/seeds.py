@@ -2,7 +2,7 @@ from faker import Faker
 import random
 
 from graphql_python_example.models import Role, Event, User
-from graphql_python_example.app_settings import db
+from graphql_python_example.app import db
 
 
 # Load dummy roles
