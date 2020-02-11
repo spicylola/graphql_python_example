@@ -6,7 +6,7 @@ for key_values table
 along with serializers/deserializers
 '''
 
-from graphql_python_example.app_settings import db
+from graphql_python_example.app import db
 from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
 
 
