@@ -115,8 +115,17 @@ mutation{
 Getting started if you want this repo locally
 ---------------
 To run locally, you will need to have Python3, Pip3, Postgres, Docker, and Docker-Compose installed.
-First you'll need to get the source of the project. Do this by cloning the repository:
 
+Make Sure to Download a version of Python 3.4 or greater to already have Pip installed/
+***Python3 Installation, download the version for your OS:** https://www.python.org/downloads/
+
+**Pip: It should already come with your Python installation.** 
+
+**Docker:** https://docs.docker.com/install/#server
+
+**Docker-Compose:** https://docs.docker.com/compose/
+
+First you'll need to get the source of the project. Do this by cloning the repository:
 ```bash
 # Get the example project code
 git clone https://github.com/spicylola/graphql_python_example.git
