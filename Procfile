@@ -1,1 +1,1 @@
-web: flask db upgrade; gunicorn graphql_python_example:app
+web: gunicorn graphql_python_example:app
