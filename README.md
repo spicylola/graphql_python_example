@@ -114,9 +114,8 @@ mutation{
 ```
 Getting started if you want this repo locally
 ---------------
-
-First you'll need to get the source of the project. Do this by cloning the
-whole Graphene-SQLAlchemy repository:
+To run locally, you will need to have Python3, Pip3, Postgres, Docker, and Docker-Compose installed.
+First you'll need to get the source of the project. Do this by cloning the repository:
 
 ```bash
 # Get the example project code
