@@ -3,7 +3,7 @@
 Challenge #1 : Familiarizing yourself with Graphql Queries and Mutations 
 ---------------
 For this challenge, you are going to :
-1. Find Events greater than 100, less than 121 with a description that has the letter "a" and "e" in it.
+1. Find Events greater than 100, less than 121 with a name that has the letter "a" and "e" in it.
 2. You will create a new user. You will create a few roles and and event for that user. Once you are done, you will delete some of the roles and events you created for that user, but not all of them. 
 
 Example Queries:
