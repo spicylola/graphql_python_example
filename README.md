@@ -3,21 +3,21 @@
 Challenge #1 : Familiarizing yourself with Graphql Queries and Mutations 
 ---------------
 For this challenge, you are going to :
-1. Find Events greater than 100, less than 121 with a name that has the letter "a" and "e" in it.
-2. You will create a new user. You will create a few roles and and event for that user. Once you are done, you will delete some of the roles and events you created for that user, but not all of them. 
+1. Find Permissions greater than 100, less than 121 with a name that has the letter "a" and "e" in it.
+2. You will create a new user. You will create a few roles and permissions for that user. Once you are done, you will delete some of the roles and permissions you created for that user, but not all of them. 
 
 Example Queries:
-Example 1: Get Event by Id 11
+Example 1: Get Permission by Id 11
 ```bash
 {
-  events(where:{id:11})
+  permissions(where:{id:11})
   {
     edges
     {
       node
       {
         id
-        createdBy
+        description
       }
     }
   }
@@ -35,16 +35,7 @@ Example 2: Get User with a Name like Joe and ID greater than 4:
       {
         id
         name
-        events
-        {
-          edges
-          {
-            node
-            {
-              id
-            }
-          }
-        }
+       
         roles
         {
           edges
@@ -65,14 +56,14 @@ Mutation:
 Create Example:
 ```bash
 mutation{
-  createEvent(createdBy:3, description:"ahh", name:"wee")
+  createPermission(createdBy:3, description:"ahh", name:"wee", role_id:4)
   {
-    event
+    permission
     {
       id
       name
       description
-      createdBy
+      role_id
 
     }
   }
@@ -157,10 +148,11 @@ Now the following command will setup the database and run the server:
 ```bash
 docker-compose up -d
 
+source install_stuff.sh
 flask db upgrade
-flask load_seed_events
-flask load_seed_roles
-flask load_seed_users
+flask load_roles
+flask load_permissions
+flask load_users
 flask run
 
 ```

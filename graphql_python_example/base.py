@@ -5,7 +5,7 @@ from graphene_sqlalchemy import SQLAlchemyObjectType
 from graphene_sqlalchemy_filter import FilterableConnectionField
 
 from graphql_python_example.models import User as UserModel
-from graphql_python_example.models import Event as EventModel
+from graphql_python_example.models import Permission as PermissionModel
 from graphql_python_example.models import Role as RoleModel
 
 from graphql_python_example.app import db
@@ -64,9 +64,9 @@ class User(SQLAlchemyObjectType):
         interfaces = (CustomNode,)
 
 
-class Event(SQLAlchemyObjectType):
+class Permission(SQLAlchemyObjectType):
     class Meta:
-        model = EventModel
+        model = PermissionModel
         interfaces = (CustomNode,)
 
 
@@ -93,8 +93,8 @@ class UpdateRole(graphene.Mutation):
     role = graphene.Field(lambda: Role, description="Role updated by this mutation.")
 
     class Arguments:
-        id = graphene.Int(required=True)
-        name = graphene.String(required=True)
+        id = graphene.Int(required=True, description="id of role to be updated")
+        name = graphene.String(required=True, description="name of role to be updated")
 
     def mutate(self, info, **data):
         role = RoleModel.update_data(data)
@@ -105,57 +105,59 @@ class DeleteRole(graphene.Mutation):
     role_id = graphene.Int(description="Role deleted by this mutation.")
 
     class Arguments:
-        id = graphene.Int(required=True)
+        id = graphene.Int(required=True, description="id of role to be deleted")
 
     def mutate(self, info, **data):
         role = db.session.query(RoleModel).get(data['id'])
         # Remove assosiations
+        role.permissions.clear()
         role.users.clear()
         db.session.delete(role)
         db.session.commit()
         return DeleteRole(role_id=data['id'])
 
 
-# EVENT MUTATION DEFINITIONS #######
-class CreateEvent(graphene.Mutation):
-    event = graphene.Field(lambda: Event, description="Mutation for creating a new event")
+# Permission MUTATION DEFINITIONS #######
+class CreatePermission(graphene.Mutation):
+    permission = graphene.Field(lambda: Permission, description="Mutation for creating a new permission")
 
     class Arguments:
         name = graphene.String(required=True)
-        description = graphene.String(required=True)
-        created_by = graphene.Int(required=True)
+        description = graphene.String(required=True, description="what the permission does")
+        role_id = graphene.Int(required=True, description="role id associated with permission")
 
     def mutate(self, info, **data):
-        event = EventModel.create(data)
-        return CreateEvent(event=event)
+        permission = PermissionModel.create(data)
+        return CreatePermission(permission=permission)
 
 
-class UpdateEvent(graphene.Mutation):
-    event = graphene.Field(lambda: Event, description="Event updated by this mutation.")
+class UpdatePermission(graphene.Mutation):
+    permission = graphene.Field(lambda: Permission, description="Permission updated by this mutation.")
 
     class Arguments:
-        id = graphene.Int(required=True)
+        id = graphene.Int(required=True, description="id of permission to be updated")
         name = graphene.String()
         description = graphene.String()
 
+
     def mutate(self, info, **data):
-        event = EventModel.update_data(data)
-        return UpdateEvent(event=event)
+        permission = PermissionModel.update_data(data)
+        return UpdatePermission(permission=permission)
 
 
-class DeleteEvent(graphene.Mutation):
-    event_id = graphene.Int(description="Event deleted by this mutation.")
+class DeletePermission(graphene.Mutation):
+    permission_id = graphene.Int(description="Permission deleted by this mutation.")
 
     class Arguments:
         id = graphene.Int(required=True)
 
     def mutate(self, info, **data):
-        event = db.session.query(EventModel).get(data['id'])
+        permission = db.session.query(PermissionModel).get(data['id'])
         # Remove associations
-        event.created_by.clear()
+        permission.role_id.clear()
         db.session.delete(event)
         db.session.commit()
-        return DeleteEvent(event_id=data['id'])
+        return DeletePermission(permission_id=data['id'])
 
 
 ######### USER MUTATIONS ########
@@ -177,7 +179,7 @@ class UpdateUser(graphene.Mutation):
 
     class Arguments:
         id = graphene.Int(required=True)
-        email = graphene.String(required=True)
+        email = graphene.String()
         name = graphene.String()
         role_ids = graphene.List(graphene.Int, required=False)
 
@@ -195,7 +197,6 @@ class DeleteUser(graphene.Mutation):
     def mutate(self, info, **data):
         user = db.session.query(UserModel).get(data['id'])
         # Remove associations
-        user.events.clear()
         user.roles.clear()
         db.session.delete(user)
         db.session.commit()

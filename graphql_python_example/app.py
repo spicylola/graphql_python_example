@@ -31,3 +31,23 @@ def create_app(config_class=LocalConfig):
      )
 
     return app
+
+app = create_app()
+# LOAD SEED DETA
+# This looks a little ratchet but to avoid circular imports
+
+@app.cli.command('load_roles')
+def load_seed_demo_roles():
+    from graphql_python_example.seeds import load_roles
+    load_roles()
+
+@app.cli.command('load_users')
+def load_seed_demo_user():
+    from graphql_python_example.seeds import load_users
+    load_users()
+
+@app.cli.command('load_permissions')
+def load_seed_permissions():
+    from graphql_python_example.seeds import load_permissions
+    load_permissions()
+

@@ -1,4 +1,4 @@
-Faker
+faker
 flask
 Flask-Migrate
 flask-graphql

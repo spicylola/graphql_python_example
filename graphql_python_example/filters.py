@@ -2,7 +2,7 @@ import graphene
 from graphene import Connection
 from graphene_sqlalchemy_filter import FilterableConnectionField, FilterSet
 
-from .models import User, Role, Event
+from .models import User, Role, Permission
 
 
 
@@ -12,9 +12,9 @@ class RolesFilter(FilterSet):
         fields = {"id":['eq', 'ne', 'gt','gte', 'lt', 'lte'],
             'name': ['eq', 'ne', 'in', 'ilike']}
 
-class EventFilter(FilterSet):
+class PermissionFilter(FilterSet):
     class Meta:
-        model = Event
+        model = Permission
         fields = { "id":['eq', 'ne', 'gt','gte', 'lt', 'lte'],
                   'name': ['eq', 'ne', 'in', 'like'],
                   "descripition": ['eq', 'ne', 'like', 'in']}

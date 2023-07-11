@@ -3,9 +3,9 @@ from graphene import relay
 
 from graphene import Connection
 
-from graphql_python_example.filters import UserFilter, EventFilter, RolesFilter
-from graphql_python_example.base import (User, Event, Role, CustomField,
-                                         CreateEvent, UpdateEvent, DeleteEvent,
+from graphql_python_example.filters import UserFilter, PermissionFilter, RolesFilter
+from graphql_python_example.base import (User, Permission, Role, CustomField,
+                                         CreatePermission, UpdatePermission, DeletePermission,
                                          CreateUser, UpdateUser, DeleteUser,
                                          CreateRole, UpdateRole, DeleteRole
                                          )
@@ -20,7 +20,7 @@ class UserFilterConnection(Connection):
     class Meta:
         node = User
 
-class EventFilterConnection(Connection):
+class PermissionFilterConnection(Connection):
     total_count = graphene.Int()
     limit = graphene.Int()
 
@@ -28,7 +28,7 @@ class EventFilterConnection(Connection):
         return info.variable_values['total_count']
 
     class Meta:
-        node = Event
+        node = Permission
 
 class RoleFilterConnection(Connection):
     total_count = graphene.Int()
@@ -43,7 +43,7 @@ class RoleFilterConnection(Connection):
 
 class Query(graphene.ObjectType):
     node = relay.Node.Field()
-    events = CustomField(EventFilterConnection, where=EventFilter(), page=graphene.Int(),
+    permissions = CustomField(PermissionFilterConnection, where=PermissionFilter(), page=graphene.Int(),
                                limit=graphene.Int())
     roles = CustomField(RoleFilterConnection, where=RolesFilter(), page=graphene.Int(), limit=graphene.Int())
     users = CustomField(UserFilterConnection, where=UserFilter(), page=graphene.Int(), limit=graphene.Int())
@@ -53,9 +53,9 @@ class Mutations(graphene.ObjectType):
     update_user = UpdateUser.Field()
     delete_user = DeleteUser.Field()
 
-    create_event = CreateEvent.Field()
-    update_event = UpdateEvent.Field()
-    delete_event = DeleteEvent.Field()
+    create_permission = CreatePermission.Field()
+    update_permission = UpdatePermission.Field()
+    delete_permission = DeletePermission.Field()
 
     create_role = CreateRole.Field()
     update_role = UpdateRole.Field()
